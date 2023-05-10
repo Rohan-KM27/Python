@@ -1,21 +1,16 @@
 import requests
 
-# Function to convert currency
 def currency_converter(amount, from_currency, to_currency):
-    # Requesting exchange rate API
+ 
     response = requests.get(f"https://api.exchangerate-api.com/v4/latest/{from_currency}")
     exchange_rates = response.json()['rates']
 
-    # Converting currency
     converted_amount = amount * exchange_rates[to_currency]
 
-    # Displaying conversion result
     print(f"{amount} {from_currency} = {converted_amount} {to_currency}")
 
-# Taking input from user
 amount = float(input("Enter amount: "))
 from_currency = input("Enter currency to convert from: ").upper()
 to_currency = input("Enter currency to convert to: ").upper()
 
-# Converting currency
 currency_converter(amount, from_currency, to_currency)
