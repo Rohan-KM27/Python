@@ -1,0 +1,9 @@
+import qrcode
+
+text = input("Enter text to generate QR code: ")
+filename = input("FILENAME ")
+
+img = qrcode.make(text)
+img.save(filename)
+
+print("QR code saved successfully!")
