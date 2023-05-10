@@ -1,0 +1,24 @@
+import requests
+from bs4 import BeautifulSoup
+
+def web_crawler(url):
+    # Requesting HTML page
+    response = requests.get(url)
+
+    # Parsing HTML with BeautifulSoup
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    # Finding all links
+    links = soup.find_all('a')
+
+    # Extracting relevant information from links
+    for link in links:
+        href = link.get('href')
+        text = link.text.strip()
+        print(href, text)
+
+# Taking input from user
+url = input("Enter URL to crawl: ")
+
+# Crawling web page
+web_crawler(url)
