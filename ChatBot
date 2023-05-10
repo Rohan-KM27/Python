@@ -1,0 +1,16 @@
+import nltk
+from nltk.chat.util import Chat, reflections
+
+pairs = [    ['my name is (.*)', ['Hi %1']],
+    ['hi|hello|hey', ['Hello!', 'Hi there!', 'Hi!']],
+    ['(.*) in (.*) is fun', ['%1 in %2 is indeed fun.']],
+    ['(.*)(location|city) ?', ['Tokyo, Japan']],
+    ['(.*) created you', ['I was created by OpenAI.']],
+    ['how are you?', ['I am doing well.']],
+    ['bye', ['Goodbye!', 'Bye!', 'See you later.']],
+]
+
+chatbot = Chat(pairs, reflections)
+
+# Starting chatbot
+chatbot.converse()
