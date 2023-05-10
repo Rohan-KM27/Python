@@ -1,0 +1,26 @@
+class Question:
+    def __init__(self, prompt, answer):
+        self.prompt = prompt
+        self.answer = answer
+
+question_prompt = [
+    'What color are apples?\n(a) Red/Green\n(b) Purple\n(c) Orange\n\n',
+    'What is the largest planet in our solar system?\n(a) Saturn\n(b) Jupiter\n(c) Uranus\n\n',
+    'What country is home to the kangaroo?\n(a) Australia\n(b) Africa\n(c) South America\n\n'
+]
+
+questions = [
+    Question(question_prompt[0], 'a'),
+    Question(question_prompt[1], 'b'),
+    Question(question_prompt[2], 'a')
+]
+
+def run_quiz(questions):
+    score = 0
+    for question in questions:
+        answer = input(question.prompt)
+        if answer == question.answer:
+            score += 1
+    print(f'You got {score} out of {len(questions)} correct!')
+
+run_quiz(questions)
