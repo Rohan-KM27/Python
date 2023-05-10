@@ -1,0 +1,13 @@
+import os
+
+def search_files(folder, query):
+    found_files = []
+    for root, dirs, files in os.walk(folder):
+        for file in files:
+            if query in file:
+                found_files.append(os.path.join(root, file))
+    return found_files
+
+folder = 'C:\\Users\\YourName\\Documents'
+query = 'example'
+print(search_files(folder, query))
