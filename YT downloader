@@ -1,0 +1,17 @@
+import pytube
+
+url = input("Enter YouTube video URL: ")
+video = pytube.YouTube(url)
+
+print("Title:", video.title)
+print("Author:", video.author)
+print("Views:", video.views)
+
+print("\nAvailable Formats:")
+for stream in video.streams.filter(progressive=True):
+    print(stream.resolution, stream.mime_type)
+
+res = input("\nEnter desired resolution: ")
+video.streams.filter(progressive=True, resolution=res).first().download()
+
+print("\nVideo downloaded successfully!")
