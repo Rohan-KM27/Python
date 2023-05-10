@@ -1,0 +1,16 @@
+import os
+from cryptography.fernet import Fernet
+
+# Generate secret key
+key = Fernet.generate_key()
+
+# Save key to file
+with open('key.key', 'wb') as f:
+    f.write(key)
+
+# Load key from file
+with open('key.key', 'rb') as f:
+    key = f.read()
+
+# Encrypt file
+filename = input("Enter filename
