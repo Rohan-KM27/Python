@@ -1,0 +1,23 @@
+import smtplib
+
+def send_email(username, password, recipients, subject, body):
+    try:
+        
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+
+        
+        server.login(username, password)
+
+        
+        message = 'Subject: {}\n\n{}'.format(subject, body)
+
+        
+        server.sendmail(username, recipients, message)
+
+        
+        server.quit()
+
+        print("Email sent successfully.")
+    except Exception as e:
+        print("Error occurred while sending email:", e)
