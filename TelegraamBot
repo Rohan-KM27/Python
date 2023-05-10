@@ -1,0 +1,11 @@
+import os
+import telegram
+
+
+token = 'your_token'
+bot = telegram.Bot(token)
+
+
+chat_id = 'your_chat_id'
+text = 'Hello, World!'
+bot.send_message(chat_id=chat_id, text=text)
