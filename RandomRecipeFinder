@@ -1,0 +1,38 @@
+import requests
+from bs4 import BeautifulSoup
+
+# Function to scrape recipe information from website
+def recipe_scraper(url):
+    # Requesting HTML page
+    response = requests.get(url)
+
+    # Parsing HTML with BeautifulSoup
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    # Finding recipe title
+    title = soup.find('h1').get_text()
+
+    # Finding ingredients list
+    ingredients = []
+    for li in soup.find_all('li', {'class': 'ingredient'}):
+        ingredients.append(li.get_text())
+
+    # Finding instructions
+    instructions = []
+    for li in soup.find_all('li', {'class': 'instruction'}):
+        instructions.append(li.get_text())
+
+    # Displaying recipe information
+    print('Title: ', title)
+    print('\nIngredients:')
+    for ingredient in ingredients:
+        print('-', ingredient)
+    print('\nInstructions:')
+    for i, instruction in enumerate(instructions):
+        print(f"{i+1}. {instruction.strip()}")
+
+# Taking input from user
+url = input("Enter URL of recipe: ")
+
+# Scraping recipe information
+recipe_scraper(url)
