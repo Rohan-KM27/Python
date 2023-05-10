@@ -1,0 +1,14 @@
+import pyttsx3
+
+def robo_speaker(text):
+    """
+    Convert text to speech using the default system voice.
+
+    :param text: Text to convert to speech.
+    """
+    engine = pyttsx3.init()
+    engine.say(text)
+    engine.runAndWait()
+
+# Example usage
+robo_speaker('Hello, how can I assist you today?')
