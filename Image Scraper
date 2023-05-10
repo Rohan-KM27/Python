@@ -1,0 +1,38 @@
+import requests
+import os
+from bs4 import BeautifulSoup
+
+def image_scraper(url, directory):
+    # Requesting HTML page
+    response = requests.get(url)
+
+    # Parsing HTML with BeautifulSoup
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    # Finding all image tags
+    img_tags = soup.find_all('img')
+
+    # Creating directory if it doesn't exist
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+    # Downloading images
+    for img in img_tags:
+        img_url = img['src']
+        img_name = os.path.basename(img_url)
+
+        try:
+            response = requests.get(img_url)
+            with open(os.path.join(directory, img_name), 'wb') as f:
+                f.write(response.content)
+        except:
+            pass
+
+    print("Images downloaded successfully.")
+
+# Taking input from user
+url = input("Enter URL to scrape images from: ")
+directory = input("Enter directory to save images in: ")
+
+# Scraping images
+image_scraper(url, directory)
