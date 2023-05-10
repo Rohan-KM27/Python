@@ -1,0 +1,13 @@
+import feedparser
+
+# Get news feed
+def get_news_feed(url):
+    feed = feedparser.parse(url)
+    for entry in feed.entries:
+        print(entry.title)
+        print(entry.link)
+        print(entry.summary)
+
+# Example usage
+url = 'https://feeds.bbci.co.uk/news/rss.xml'
+get_news_feed(url)
