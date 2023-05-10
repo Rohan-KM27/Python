@@ -1,0 +1,21 @@
+import hashlib
+
+def password_manager():
+    # Storing passwords in dictionary
+    passwords = {}
+
+    while True:
+        # Taking input from user
+        website = input("Enter website: ")
+        username = input("Enter username: ")
+        password = input("Enter password: ")
+
+        # Hashing password with SHA-256
+        hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+
+        # Storing password in dictionary
+        passwords[website] = (username, hashed_password)
+
+        # Asking user if they want to add another password
+        add_another = input("Do you want to add another password? (y/n) ")
+       
