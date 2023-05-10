@@ -1,0 +1,23 @@
+import os
+from playsound import playsound
+
+directory = input("Enter directory containing music files: ")
+
+while True:
+    # Get list of all mp3 files in directory
+    mp3_files = [f for f in os.listdir(directory) if f.endswith('.mp3')]
+
+    # Display list of available songs
+    print("Available songs:")
+    for i, song in enumerate(mp3_files):
+        print(f"{i+1}. {song}")
+
+    # Allow user to select a song to play
+    choice = int(input("Enter the number of the song you would like to play (0 to exit): "))
+    if choice == 0:
+        break
+    elif 1 <= choice <= len(mp3_files):
+        song_path = os.path.join(directory, mp3_files[choice-1])
+        playsound(song_path)
+    else:
+        print("Invalid choice. Please try again.")
