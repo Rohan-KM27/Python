@@ -1,0 +1,20 @@
+from reportlab.pdfgen import canvas
+
+def pdf_generator(name, age, gender):
+    # Generating PDF document
+    filename = f"{name}.pdf"
+    c = canvas.Canvas(filename)
+    c.drawString(100, 750, "Name: " + name)
+    c.drawString(100, 700, "Age: " + str(age))
+    c.drawString(100, 650, "Gender: " + gender)
+    c.save()
+
+    print(f"PDF generated successfully at {filename}.")
+
+# Taking input from user
+name = input("Enter name: ")
+age = int(input("Enter age: "))
+gender = input("Enter gender: ")
+
+# Generating PDF document
+pdf_generator(name, age, gender)
