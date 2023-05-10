@@ -1,0 +1,20 @@
+import requests
+from bs4 import BeautifulSoup
+
+url = "https://en.wikipedia.org/wiki/Special:Random"
+response = requests.get(url)
+
+soup = BeautifulSoup(response.text, 'html.parser')
+title = soup.find('h1', id='firstHeading').text
+content = soup.find('div', class_='mw-parser-output').find_all('p')
+summary = ''
+
+for p in content:
+    if p.text.strip() == '':
+        continue
+    else:
+        summary += p.text
+        break
+
+print("Title:", title)
+print("Summary:", summary)
