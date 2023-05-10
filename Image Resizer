@@ -1,0 +1,16 @@
+from PIL import Image
+
+def resize_image(input_path, output_path, size):
+    """
+    Resize an image to a specified size.
+
+    :param input_path: File path of the input image.
+    :param output_path: File path of the resized image.
+    :param size: Tuple containing the desired width and height of the resized image.
+    """
+    with Image.open(input_path) as image:
+        image.thumbnail(size)
+        image.save(output_path)
+
+# Example usage
+resize_image('input_image.jpg', 'resized_image.jpg', (500, 500))
